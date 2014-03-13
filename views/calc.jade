@@ -1,0 +1,42 @@
+extends layout
+
+- var calc = require("javascripts/calculator.js")
+
+
+block content
+  h1= title
+  title = #{title}
+  //p #{title}
+  - console.log(title)
+  if title == "Addition"
+    form(id='register-form', method='POST', action='/add')
+      input#var1(type="number", name='var1', value=variable1)
+      input#var2(type="number", name='var2', value=variable2)
+      p
+      input#result(type="number", name='result', value=total)
+      p
+      input(type='submit',value='Add')
+  else if title == "Subtraction"
+    form(id='register-form', method='POST', action='/subtract')
+      input#var1(type="number", name='var1', value=variable1)
+      input#var2(type="number", name='var2', value=variable2)
+      p
+      input#result(type="number", name='result', value=total)
+      p
+      input(type='submit',value='Subtract')
+  else if title == "Multiplication"
+    form(id='register-form', method='POST', action='/multiply')
+      input#var1(type="number", name='var1', value=variable1)
+      input#var2(type="number", name='var2', value=variable2)
+      p
+      input#result(type="number", name='result', value=total)
+      p
+      input(type='submit',value='Multiply')
+  else if title == "Division"
+    form(id='register-form', method='POST', action='/divide')
+      input#var1(type="number", name='var1', value=variable1)
+      input#var2(type="number", name='var2', value=variable2)
+      p
+      input#result(type="number", name='result', value=total)
+      p
+      input(type='submit',value='Divide')
