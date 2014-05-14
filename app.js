@@ -44,11 +44,13 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/purchase', routes.purchase);
+app.get('/quotes', routes.quotes);
 
 
 app.get('/addLaptop', routes.addLaptop);
 app.post('/addLaptop', routes.addLaptop);
-
+app.get('/retrieveQuotes', routes.retrieveQuotes);
+app.post('/retrieveQuotes', routes.retrieveQuotes);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

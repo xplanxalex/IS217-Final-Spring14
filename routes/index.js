@@ -12,6 +12,9 @@ exports.index = function(req, res){
 exports.purchase = function(req, res){
 	res.render('purchase', { title: 'Purchase' });
 };
+exports.quotes = function(req, res){
+	res.render('quotes', { title: 'Quotes' });
+};
 exports.addLaptop = function(req, res){
 	console.log(req.body);
 	var basicLaptop = laptopFactory.buildBasic();
@@ -19,5 +22,29 @@ exports.addLaptop = function(req, res){
 	var newLaptop = laptopFactory.decorateLaptop(req.body.scrn, req.body.hdd, req.body.ram, basicLaptop);
 	console.log(newLaptop);
 	res.render('purchase', { title: 'Purchase', screenSize: newLaptop.screenSize, hddSize: newLaptop.hddSize, ramSize: newLaptop.ramSize, price: newLaptop.price });
+};
+exports.retrieveQuotes = function(req, res) {
+	console.log("we got here");
+	//var sys = require('util');
+	var mongoose = require('mongoose');
+	//mongoose.connect('mongodb://localhost/is217-final');
+	var Schema = mongoose.Schema;
+	//Model
+	var QuoteSchema = new Schema({
+		screenSize : String,
+		hdd : String,
+		ram: String,
+		price: Number,
+	});
+	mongoose.model('Quote', QuoteSchema);
+	//Controller
+	var Quote = mongoose.model('Quote');
+	Quote.find(function(req,quotes) {
+		console.log(Quote.screenSize);
+		res.render('quotes', {
+			title: 'Quotes' ,
+			quotes: quotes
+		});
+	});
 };
 
