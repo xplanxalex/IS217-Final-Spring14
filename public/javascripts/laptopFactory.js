@@ -1,6 +1,7 @@
 exports = module.exports = {};
 
 // THIS USES THE FACTORY PATTERN -------V
+//I chose the factory pattern because i knew I would be making many laptops, this allows me to make many systematically
 
 exports.buildBasic = function()
 {
@@ -14,6 +15,7 @@ exports.buildBasic = function()
 }
 
 // ADD DECORATOR --------v
+//I used the decorator pattern to outfit my basic laptop with more configuration options (ram, hdd, etc). 
 
 exports.decorateLaptop = function(scrn, hdd, ram, laptop)
 {
