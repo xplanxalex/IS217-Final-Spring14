@@ -8,15 +8,25 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var calculator = require('./public/javascripts/calculator.js');
+var mongoose = require('mongoose');
 
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
+
+mongoose.connect('mongodb://localhost/is217-final');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('view options', { locals: { scripts: ['calculator.js'] } });
+//app.set('view options', { locals: { scripts: ['calculator.js'] } });
+
+
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -33,17 +43,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/calc', routes.calc);
 
 
-app.get('/add', routes.add);
-app.post('/add', routes.add);
-app.get('/subtract', routes.subtract);
-app.post('/subtract', routes.subtract);
-app.get('/multiply', routes.multiply);
-app.post('/multiply', routes.multiply);
-app.get('/divide', routes.divide);
-app.post('/divide', routes.divide);
+
+app.get('/addLaptop', routes.addLaptop);
+app.post('/addLaptop', routes.addLaptop);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
