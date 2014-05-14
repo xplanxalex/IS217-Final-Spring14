@@ -1,5 +1,7 @@
 exports = module.exports = {};
 
+// THIS USES THE FACTORY PATTERN -------V
+
 exports.buildBasic = function()
 {
 	var basicLaptop = {
@@ -10,6 +12,9 @@ exports.buildBasic = function()
 	};
 	return basicLaptop;
 }
+
+// ADD DECORATOR --------v
+
 exports.decorateLaptop = function(scrn, hdd, ram, laptop)
 {
 	if(scrn == "15")
@@ -28,10 +33,4 @@ exports.decorateLaptop = function(scrn, hdd, ram, laptop)
 		laptop.price = laptop.price + 200;
 	}
 	return laptop;
-	/*
-	console.log(scrn);
-	console.log(hdd);
-	console.log(ram);
-	console.log(laptop);
-	*/
 }
