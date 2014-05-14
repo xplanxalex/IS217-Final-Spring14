@@ -44,7 +44,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/purchase', routes.purchase);
-app.get('/quotes', routes.quotes);
+app.get('/quotes')
 
 
 app.get('/addLaptop', routes.addLaptop);

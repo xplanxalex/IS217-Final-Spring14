@@ -21,10 +21,7 @@ exports.addLaptop = function(req, res){
 	console.log(basicLaptop);
 	var newLaptop = laptopFactory.decorateLaptop(req.body.scrn, req.body.hdd, req.body.ram, basicLaptop);
 	console.log(newLaptop);
-	res.render('purchase', { title: 'Purchase', screenSize: newLaptop.screenSize, hddSize: newLaptop.hddSize, ramSize: newLaptop.ramSize, price: newLaptop.price });
-};
-exports.retrieveQuotes = function(req, res) {
-	console.log("we got here");
+	//console.log("we got here");
 	//var sys = require('util');
 	var mongoose = require('mongoose');
 	//mongoose.connect('mongodb://localhost/is217-final');
@@ -36,6 +33,41 @@ exports.retrieveQuotes = function(req, res) {
 		ram: String,
 		price: Number,
 	});
+	mongoose.model('Quote', QuoteSchema);
+	//Controller
+	var Quote = mongoose.model('Quote');
+	
+	var newQuote = new Quote ( {
+		screenSize: newLaptop.screenSize,
+		hdd: newLaptop.hddSize,
+		ram: newLaptop.ramSize,
+		price: newLaptop.price
+	});
+	
+	newQuote.save(function (err) {
+    if(err) {
+      console.log(err)
+    } else {
+      	console.log(newLaptop);
+      	res.render('purchase', { title: 'Purchase', screenSize: newLaptop.screenSize, hddSize: newLaptop.hddSize, ramSize: newLaptop.ramSize, price: newLaptop.price }); 
+    }
+
+  	});
+};
+exports.retrieveQuotes = function(req, res) {
+	//console.log("we got here");
+	//var sys = require('util');
+	var mongoose = require('mongoose');
+	//mongoose.connect('mongodb://localhost/is217-final');
+	var Schema = mongoose.Schema;
+	//Model
+	var QuoteSchema = new Schema({
+		screenSize : String,
+		hdd : String,
+		ram: String,
+		price: Number,
+	});
+
 	mongoose.model('Quote', QuoteSchema);
 	//Controller
 	var Quote = mongoose.model('Quote');
