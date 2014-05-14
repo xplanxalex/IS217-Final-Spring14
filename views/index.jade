@@ -1,6 +1,32 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  form(method='POST', action='/addLaptop')
+    h1 Buying a Laptop
+      h4 Screen Size
+      input(type='radio', name='screen', value='11')
+      | 11 Inches (standard)
+      br
+      input(type='radio', name='screen', value='15')
+      | 15 Inches ( + $200 )
+      br
+      h4 Hard Drive Size
+      input(type='radio', name='hdd', value='128')
+      | 128 GB (standard)
+      br
+      input(type='radio', name='hdd', value='256')
+      | 256 GB ( + $200 )
+      br
+      h4 RAM Size
+      input(type='radio', name='ram', value='8')
+      | 8 GB (standard)
+      br
+      input(type='radio', name='ram', value='16')
+      | 16 GB( + $200 )
+      br
+      br
+      input(type='submit', value='Buy laptop')
+    form(method='POST', action='/retrieveQuotes')
+      br
+      input(type='submit', value='Retrieve Quotes')
   
